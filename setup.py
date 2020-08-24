@@ -1,7 +1,5 @@
 from setuptools import setup, find_packages
 
-install_requires = ["pytest>=3.6.0"]
-
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
@@ -21,7 +19,18 @@ setup(
     license_files=("LICENSE",),
     long_description=long_description,
     long_description_content_type="text/markdown",
-    install_requires=install_requires,
+    install_requires=[
+        "pytest>=3.6.0"
+    ],
+    extras_require={
+        "tests": [
+            "grpcio",
+            "grpcio-tools",
+        ],
+        "asyncio": [
+            "pytest-asyncio",
+        ],
+    },
     classifiers=[
         "Framework :: Pytest",
         "Intended Audience :: Developers",
