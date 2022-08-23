@@ -1,11 +1,11 @@
+import asyncio
+import grpc
+import inspect
+import pytest
+import pytest_asyncio
 import socket
 from concurrent import futures
-
-import grpc
 from grpc.experimental import aio
-import pytest
-import inspect
-import asyncio
 
 
 def assert_async(request):
@@ -148,8 +148,7 @@ def aio_grpc_create_channel(request, grpc_addr, grpc_channel_credentials):
     return aio.secure_channel(grpc_addr, grpc_channel_credentials)
 
 
-@pytest.mark.asyncio
-@pytest.fixture
+@pytest_asyncio.fixture
 async def aio_grpc_channel(request, aio_grpc_create_channel):
     async with aio_grpc_create_channel as channel:
         yield channel
